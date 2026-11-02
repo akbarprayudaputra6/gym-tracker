@@ -21,3 +21,7 @@ Route::delete('/exercises/{id}', [App\Http\Controllers\Api\ExerciseController::c
 
 
 Route::apiResource('sessions', App\Http\Controllers\Api\WorkoutSessionController::class);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/exercises/{id}/progress', [App\Http\Controllers\Api\AnalyticsController::class, 'exerciseProgress']);
+});
