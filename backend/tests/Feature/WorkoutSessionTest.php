@@ -52,8 +52,8 @@ test('sukses 201: membuat sesi dan seluruh set secara atomik', function () {
     ]);
 
     $response->assertStatus(201)
-        ->assertJsonPath('day_type', 'push')
-        ->assertJsonCount(2, 'sets');
+        ->assertJsonPath('data.day_type', 'push')
+        ->assertJsonCount(2, 'data.sets');
 
     $this->assertDatabaseHas('workout_sessions', ['user_id' => $user->id]);
     $this->assertDatabaseCount('workout_sets', 2);

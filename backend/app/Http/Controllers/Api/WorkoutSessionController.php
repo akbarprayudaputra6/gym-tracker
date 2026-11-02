@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\WorkoutSessionRequest;
+use App\Http\Resources\WorkoutSessionResource;
 use App\Models\WorkoutSession;
 use App\Services\WorkoutSessionService;
 use Illuminate\Http\Request;
@@ -20,7 +21,9 @@ class WorkoutSessionController extends Controller
             $request->user()->id
         );
 
-        return response()->json($session, 201);
+        return (new WorkoutSessionResource($session))
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function index(Request $request)
@@ -30,21 +33,23 @@ class WorkoutSessionController extends Controller
             ->latest('date')
             ->get();
 
-        return response()->json($sessions);
+        return WorkoutSessionResource::collection($sessions);
     }
 
     public function show($id)
     {
         $session = WorkoutSession::where('user_id', Auth::id())
+            ->where('id', $id)
             ->with('sets.exercise')
             ->firstOrFail();
 
-        return response()->json($session);
+        return new WorkoutSessionResource($session);
     }
 
     public function destroy($id)
     {
         $session = WorkoutSession::where('user_id', Auth::id())
+            ->where('id', $id)
             ->firstOrFail();
 
         $session->delete();
