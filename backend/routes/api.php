@@ -18,3 +18,6 @@ Route::post('/exercises', [App\Http\Controllers\Api\ExerciseController::class, '
 Route::get('/exercises/{id}', [App\Http\Controllers\Api\ExerciseController::class, 'show']);
 Route::put('/exercises/{id}', [App\Http\Controllers\Api\ExerciseController::class, 'update']);
 Route::delete('/exercises/{id}', [App\Http\Controllers\Api\ExerciseController::class, 'destroy']);
+
+
+Route::apiResource('sessions', App\Http\Controllers\Api\WorkoutSessionController::class);
