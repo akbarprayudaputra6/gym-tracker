@@ -1,11 +1,32 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MobileLayout from "./components/MobileLayout";
+
+// Mock Page Components (Akan kita isi selanjutnya)
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+
 function App() {
   return (
-    <>
-      <h1 className="text-amber-500">Hello World</h1>
-      <button class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">
-        Button
-      </button>
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes inside Mobile Layout */}
+        <Route element={<ProtectedRoute />}>
+          <Route element={<MobileLayout />}>
+            <Route path="/" element={<Dashboard />} />
+            {/* Rute /exercises dan /sessions/new akan ditambahkan di sini */}
+          </Route>
+        </Route>
+
+        {/* Fallback Route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
