@@ -32,25 +32,42 @@ const MobileLayout = () => {
         <Outlet />
       </main>
 
-      {/* Bottom Navigation Bar (Fixed) */}
-      <div className="btm-nav btm-nav-md bg-base-100 border-t border-base-200 z-50">
-        <Link to="/" className={isActive("/") ? "active text-primary" : ""}>
+      {/* Bottom Navigation Bar (Fixed & Responsive) */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 h-16 bg-base-100 border-t border-base-200 flex flex-row items-center justify-around max-w-md mx-auto">
+        <Link
+          to="/"
+          className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-all ${
+            isActive("/")
+              ? "text-primary font-semibold border-t-2 border-primary -mt-[2px]"
+              : "text-base-content/60 hover:text-base-content"
+          }`}
+        >
           <Home className="w-5 h-5" />
-          <span className="btm-nav-label text-xs">Home</span>
+          <span className="text-[11px]">Home</span>
         </Link>
+
         <Link
           to="/exercises"
-          className={isActive("/exercises") ? "active text-primary" : ""}
+          className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-all ${
+            isActive("/exercises")
+              ? "text-primary font-semibold border-t-2 border-primary -mt-[2px]"
+              : "text-base-content/60 hover:text-base-content"
+          }`}
         >
           <Dumbbell className="w-5 h-5" />
-          <span className="btm-nav-label text-xs">Katalog</span>
+          <span className="text-[11px]">Katalog</span>
         </Link>
+
         <Link
           to="/sessions/new"
-          className={isActive("/sessions/new") ? "active text-primary" : ""}
+          className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-all ${
+            isActive("/sessions/new")
+              ? "text-primary font-semibold border-t-2 border-primary -mt-[2px]"
+              : "text-base-content/60 hover:text-base-content"
+          }`}
         >
           <ClipboardList className="w-5 h-5" />
-          <span className="btm-nav-label text-xs">Catat Sesi</span>
+          <span className="text-[11px]">Catat Sesi</span>
         </Link>
       </div>
     </div>
