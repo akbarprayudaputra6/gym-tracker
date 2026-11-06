@@ -16,6 +16,7 @@ const Exercises = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newName, setNewName] = useState("");
   const [newCategory, setNewCategory] = useState("push");
+  const [newTrackingType, setNewTrackingType] = useState("weight_reps");
   const [modalError, setModalError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -48,6 +49,7 @@ const Exercises = () => {
       await api.post("/exercises", {
         name: newName,
         category: newCategory,
+        tracking_type: newTrackingType,
       });
 
       setNewName("");
@@ -106,7 +108,7 @@ const Exercises = () => {
 
       {/* Filter Tabs (DaisyUI) */}
       <div className="tabs tabs-boxed bg-base-100 p-1 justify-around text-xs">
-        {["all", "push", "pull", "legs", "core"].map((cat) => (
+        {["all", "push", "pull", "leg", "core"].map((cat) => (
           <button
             key={cat}
             className={`tab tab-xs capitalize ${selectedCategory === cat ? "tab-active" : ""}`}
@@ -211,6 +213,25 @@ const Exercises = () => {
                   <option value="pull">Pull (Punggung/Bisep)</option>
                   <option value="legs">Legs (Kaki)</option>
                   <option value="core">Core (Perut)</option>
+                </select>
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Tipe Tracking</span>
+                </label>
+                <select
+                  className="select select-bordered w-full text-xs"
+                  value={newTrackingType}
+                  onChange={(e) => setNewTrackingType(e.target.value)}
+                >
+                  <option value="weight_reps">
+                    Beban & Repetisi (Weight & Reps)
+                  </option>
+                  <option value="bodyweight_reps">
+                    Hanya Repetisi (Bodyweight)
+                  </option>
+                  <option value="duration">Durasi / Waktu (Time-based)</option>
                 </select>
               </div>
 
