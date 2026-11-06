@@ -50,7 +50,7 @@ const MobileLayout = () => {
           to="/exercises"
           className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-all ${
             isActive("/exercises")
-              ? "text-primary font-semibold border-t-2 border-primary -mt-[2px]"
+              ? "text-primary font-semibold border-t-2 border-primary -mt-"
               : "text-base-content/60 hover:text-base-content"
           }`}
         >
@@ -62,7 +62,7 @@ const MobileLayout = () => {
           to="/sessions/new"
           className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-all ${
             isActive("/sessions/new")
-              ? "text-primary font-semibold border-t-2 border-primary -mt-[2px]"
+              ? "text-primary font-semibold border-t-2 border-primary -mt-"
               : "text-base-content/60 hover:text-base-content"
           }`}
         >
