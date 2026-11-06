@@ -16,7 +16,7 @@ class AuthService
         //
     }
 
-    public function register(array $data): string
+    public function register(array $data): array
     {
         $user = User::create([
             'name' => $data['name'],
@@ -24,10 +24,10 @@ class AuthService
             'password' => Hash::make($data['password']),
         ]);
 
-        return $this->createToken($user);
+        return ["user"=>$user,"token"=>$this->createToken($user)];
     }
 
-    public function login(array $credentials): string
+    public function login(array $credentials): array
     {
         $user = User::where('email', $credentials['email'])->first();
 
@@ -37,7 +37,7 @@ class AuthService
             ]);
         }
 
-        return $this->createToken($user);
+        return ["user"=>$user,"token"=>$this->createToken($user)];
     }
 
     private function createToken(User $user): string

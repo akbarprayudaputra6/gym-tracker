@@ -12,6 +12,7 @@ test('register berhasil dan mengembalikan token', function () {
         'name' => 'Akbar',
         'email' => 'akbar@example.com',
         'password' => 'password123',
+        'password_confirmation' => 'password123'
     ])->assertStatus(201)->assertJsonStructure(['token']);
 });
 
@@ -34,4 +35,37 @@ test('endpoint me mengembalikan data pengguna yang sedang login', function () {
 
     $response->assertStatus(200)
         ->assertJsonPath('data.email', $user->email);
+});
+
+it('returns token and user object on successful login', function () {
+    $user = User::factory()->create([
+        'email' => 'ahmad@example.com',
+        'password' => bcrypt('password123'),
+    ]);
+
+    $response = $this->postJson('/api/login', [
+        'email' => 'ahmad@example.com',
+        'password' => 'password123',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJsonStructure([
+            'token',
+            'user' => ['id', 'name', 'email'],
+        ]);
+});
+
+it('fails registration when password confirmation does not match', function () {
+    $response = $this->postJson('/api/register', [
+        'name'                  => 'Ahmad',
+        'email'                 => 'ahmad@example.com',
+        'password'              => 'password123',
+        'password_confirmation' => 'passwordBeda',
+    ]);
+
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['password'])
+        ->assertJsonFragment([
+            'password' => ['Konfirmasi password tidak cocok.'],
+        ]);
 });
