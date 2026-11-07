@@ -209,10 +209,12 @@ const Exercises = () => {
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
                 >
-                  <option value="push">Push (Dada/Bahu/Trisep)</option>
-                  <option value="pull">Pull (Punggung/Bisep)</option>
-                  <option value="legs">Legs (Kaki)</option>
-                  <option value="core">Core (Perut)</option>
+                  <option value="push">Push</option>
+                  <option value="pull">Pull</option>
+                  <option value="leg">Leg</option>{" "}
+                  {/* Wajib 'leg' (bukan 'legs') */}
+                  <option value="core">Core</option>
+                  <option value="cardio">Cardio</option>
                 </select>
               </div>
 
@@ -226,12 +228,12 @@ const Exercises = () => {
                   onChange={(e) => setNewTrackingType(e.target.value)}
                 >
                   <option value="weight_reps">
-                    Beban & Repetisi (Weight & Reps)
+                    Beban & Repetisi (weight_reps)
                   </option>
                   <option value="bodyweight_reps">
-                    Hanya Repetisi (Bodyweight)
+                    Hanya Repetisi (bodyweight_reps)
                   </option>
-                  <option value="duration">Durasi / Waktu (Time-based)</option>
+                  <option value="duration">Durasi / Waktu (duration)</option>
                 </select>
               </div>
 

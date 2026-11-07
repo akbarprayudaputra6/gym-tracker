@@ -38,7 +38,7 @@ const MobileLayout = () => {
           to="/"
           className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-all ${
             isActive("/")
-              ? "text-primary font-semibold border-t-2 border-primary -mt-[2px]"
+              ? "text-primary font-semibold border-t-2 border-primary -mt-"
               : "text-base-content/60 hover:text-base-content"
           }`}
         >

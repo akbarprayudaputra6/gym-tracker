@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Exercises from "./pages/Exercises";
+import Progress from "./pages/Progress";
+import NewSession from "./pages/NewSession";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route element={<MobileLayout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/exercises" element={<Exercises />} />
+            <Route path="/exercises/:id/progress" element={<Progress />} />
+            <Route path="/sessions/new" element={<NewSession />} />
           </Route>
         </Route>
 
